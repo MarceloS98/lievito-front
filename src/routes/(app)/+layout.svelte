@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Header } from '$lib/components';
 	import type { LayoutData } from './$types';
+	import { page } from '$app/stores';
 
 	export let data: LayoutData;
 </script>

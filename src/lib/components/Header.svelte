@@ -10,13 +10,9 @@
 		DropdownItem,
 		DropdownHeader
 	} from 'flowbite-svelte';
+	import { checkRoute } from '$lib/utils/checkRoute';
 
 	export let path: string;
-
-	// Regular expression to match paths starting with '/transacciones'
-	const transaccionesRegex = /^\/transacciones(\/|$)/;
-	// Check if the current path matches the pattern
-	$: isTransacciones = transaccionesRegex.test(path);
 </script>
 
 <Navbar let:hidden let:toggle>
@@ -36,7 +32,7 @@
 	</Dropdown>
 	<NavUl {hidden}>
 		<NavLi href="/" active={path === '/'}>Home</NavLi>
-		<NavLi href="/productos" active={path === '/productos'}>Productos</NavLi>
-		<NavLi href="/insumos" active={path === '/insumos'}>Insumos</NavLi>
+		<NavLi href="/productos" active={checkRoute({ path, pattern: 'productos' })}>Productos</NavLi>
+		<NavLi href="/insumos" active={checkRoute({ path, pattern: 'insumos' })}>Insumos</NavLi>
 	</NavUl>
 </Navbar>

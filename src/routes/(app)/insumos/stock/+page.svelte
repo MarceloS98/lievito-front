@@ -1,9 +1,10 @@
 <script lang="ts">
-	import { Button } from 'flowbite-svelte';
+	import { Button, Breadcrumb, BreadcrumbItem } from 'flowbite-svelte';
 	import { Table, CreateProduct } from '$lib/components';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
+
 	let isOpen = false;
 </script>
 
@@ -11,10 +12,9 @@
 	<p>Loading...</p>
 {:then data}
 	<main>
-		<Table items={data.productos} title="Productos Registrados">
-			<Button href="/productos/stock" slot="link">Ver Stock</Button>
+		<Table items={data.ingredientes} title="Stock de Insumos">
 			<svelte:fragment slot="crear">
-				<Button on:click={() => (isOpen = !isOpen)}>Nuevo Producto</Button>
+				<Button on:click={() => (isOpen = !isOpen)}>Registrar Movimiento</Button>
 				<CreateProduct bind:isOpen ingredientes={data.ingredientes} />
 			</svelte:fragment>
 		</Table>

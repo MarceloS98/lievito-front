@@ -13,7 +13,8 @@
 	<p>Loading...</p>
 {:then data}
 	<main>
-		<Table items={data.ingredientes}>
+		<Table items={data.ingredientes} title="Insumos Registrados">
+			<Button href="/insumos/stock" slot="link">Ver Stock</Button>
 			<svelte:fragment slot="crear">
 				<Button on:click={() => (isOpen = !isOpen)}>Nuevo Ingrediente</Button>
 				<CreateIngredient {isOpen} />
@@ -21,5 +22,5 @@
 		</Table>
 	</main>
 {:catch error}
-	<p style="color: red">{error.message}</p>
+	<p class="text-red">{error.message}</p>
 {/await}
