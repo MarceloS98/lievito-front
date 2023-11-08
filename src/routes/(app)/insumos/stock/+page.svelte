@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { Button, TableBody, TableHead, TableHeadCell } from 'flowbite-svelte';
 	import { Table } from '$lib/components';
-	import Pagination from '$lib/components/Table/Pagination.svelte';
-	import TableRow from '$lib/components/Table/TableRow.svelte';
+	import Pagination from '$lib/components/Pagination.svelte';
+	import TableRow from '$lib/components/TableRow.svelte';
 	import type { PageServerData } from './$types';
 	import IngredientStockMovementModal from '$lib/components/IngredientStockMovementModal.svelte';
 	import { handleCreateIngredientStock } from '$lib/utils/createIngredientStock';

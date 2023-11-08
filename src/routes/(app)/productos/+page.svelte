@@ -4,14 +4,14 @@
 	import { Button, TableBody, TableBodyCell, TableHead, TableHeadCell } from 'flowbite-svelte';
 	import { Table } from '$lib/components';
 	import ConfirmDeleteModal from '$lib/components/ConfirmDeleteModal.svelte';
-	import Pagination from '$lib/components/Table/Pagination.svelte';
-	import TableRow from '$lib/components/Table/TableRow.svelte';
+	import Pagination from '$lib/components/Pagination.svelte';
+	import TableRow from '$lib/components/TableRow.svelte';
 	import type { Product, ProductIngredient, SelectedIngredient } from '$lib/interfaces';
 	import type { PageServerData } from './$types';
 	import CreateProductModal from '$lib/components/CreateProductModal.svelte';
 	import { handleCreateProduct } from '$lib/utils/createProduct';
 	import { handleDeleteProduct } from '$lib/utils/deleteProduct';
-	import EditProductModal from '$lib/components/Table/EditProductModal.svelte';
+	import EditProductModal from '$lib/components/EditProductModal.svelte';
 	import { handleEditProduct } from '$lib/utils/editProduct';
 
 	export let data: PageServerData;
