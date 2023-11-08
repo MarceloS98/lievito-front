@@ -12,7 +12,6 @@
 	import type { PageServerData } from './$types';
 
 	export let data: PageServerData;
-	$: console.log(data);
 
 	let isNewIngredientOpen = false;
 	let isEditModalOpen = false;

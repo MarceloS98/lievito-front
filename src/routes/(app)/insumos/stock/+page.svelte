@@ -9,8 +9,6 @@
 
 	export let data: PageServerData;
 
-	$: console.log(data);
-
 	let isNewMovementOpen = false;
 
 	const titleKeys = {
@@ -26,8 +24,6 @@
 			quantity_kg: stock.quantity_kg
 		};
 	});
-
-	$: console.log(stock);
 
 	const handleSearch = (e: CustomEvent) => {
 		console.log(e.detail);
