@@ -4,7 +4,7 @@
 	import Pagination from '$lib/components/Table/Pagination.svelte';
 	import TableRow from '$lib/components/Table/TableRow.svelte';
 	import type { PageServerData } from './$types';
-	import IngredientStockMovementModal from '$lib/components/RegisterMovement/IngredientStockMovementModal.svelte';
+	import IngredientStockMovementModal from '$lib/components/IngredientStockMovementModal.svelte';
 	import { handleCreateIngredientStock } from '$lib/utils/createIngredientStock';
 
 	export let data: PageServerData;

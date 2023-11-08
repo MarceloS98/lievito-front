@@ -3,7 +3,7 @@
 	import { writable } from 'svelte/store';
 	import { Button, TableBody, TableBodyCell, TableHead, TableHeadCell } from 'flowbite-svelte';
 	import { Table } from '$lib/components';
-	import ConfirmDeleteModal from '$lib/components/Table/ConfirmDeleteModal.svelte';
+	import ConfirmDeleteModal from '$lib/components/ConfirmDeleteModal.svelte';
 	import Pagination from '$lib/components/Table/Pagination.svelte';
 	import TableRow from '$lib/components/Table/TableRow.svelte';
 	import type { Product, ProductIngredient, SelectedIngredient } from '$lib/interfaces';

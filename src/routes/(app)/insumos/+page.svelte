@@ -4,7 +4,7 @@
 	import { handleDeleteIngredient } from '$lib/utils/deleteIngredient';
 	import { handleEditIngredient } from '$lib/utils/editIngredient';
 	import { Table, CreateIngredientModal } from '$lib/components';
-	import ConfirmDeleteModal from '$lib/components/Table/ConfirmDeleteModal.svelte';
+	import ConfirmDeleteModal from '$lib/components/ConfirmDeleteModal.svelte';
 	import EditIngredientModal from '$lib/components/EditIngredientModal.svelte';
 	import Pagination from '$lib/components/Table/Pagination.svelte';
 	import TableRow from '$lib/components/Table/TableRow.svelte';
