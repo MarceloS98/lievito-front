@@ -6,8 +6,8 @@
 	import { Table, CreateIngredientModal } from '$lib/components';
 	import ConfirmDeleteModal from '$lib/components/ConfirmDeleteModal.svelte';
 	import EditIngredientModal from '$lib/components/EditIngredientModal.svelte';
-	import Pagination from '$lib/components/Table/Pagination.svelte';
-	import TableRow from '$lib/components/Table/TableRow.svelte';
+	import Pagination from '$lib/components/Pagination.svelte';
+	import TableRow from '$lib/components/TableRow.svelte';
 	import type { Ingredient } from '$lib/interfaces';
 	import type { PageServerData } from './$types';
 
