@@ -1,16 +1,24 @@
 // import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import type { Ingredient, Product } from '$lib/interfaces';
+import { redirect } from '@sveltejs/kit';
 
-export const load: PageServerLoad = async ({ fetch }) => {
+export const load: PageServerLoad = async ({ fetch, url }) => {
+	const page = url.searchParams.get('page');
+
+	if (!page) {
+		throw redirect(302, '/productos/stock?page=1');
+	}
+
 	try {
-		const res_productos = await fetch('/data/productos-stock.json');
-		const res_ingredientes = await fetch('/data/ingredientes-stock.json');
-
-		const productos: Product[] = await res_productos.json();
-		const ingredientes: Ingredient[] = await res_ingredientes.json();
-
-		return { productos, ingredientes };
+		const [res_paginated, res_complete] = await Promise.all([
+			fetch(`https://lievito-back-production.up.railway.app/api/v1/productsStock?page=${page}`),
+			fetch(`https://lievito-back-production.up.railway.app/api/v1/productsStock?all=true`)
+		]);
+		const [productStockData, completeProductStockData] = await Promise.all([
+			res_paginated.json(),
+			res_complete.json()
+		]);
+		return { productStockData, completeProductStockData };
 	} catch (e) {
 		console.log(e);
 	}

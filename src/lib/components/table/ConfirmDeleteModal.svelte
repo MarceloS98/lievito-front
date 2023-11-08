@@ -2,8 +2,6 @@
 	import { Button, Modal } from 'flowbite-svelte';
 
 	export let isOpen: boolean = false;
-	export let handleCancel = () => {};
-	export let handleDelete = () => {};
 </script>
 
 <Modal title="" bind:open={isOpen} autoclose size="sm" class="w-full">
@@ -23,7 +21,7 @@
 		¿Seguro que quieres eliminar este item?
 	</p>
 	<div class="flex justify-center items-center space-x-4">
-		<Button color="light" on:click={handleCancel}>No, cancelar</Button>
-		<Button color="red" on:click={handleDelete}>Sí, estoy seguro</Button>
+		<Button color="light" on:click={() => (isOpen = false)}>No, cancelar</Button>
+		<Button color="red" on:click>Sí, estoy seguro</Button>
 	</div>
 </Modal>

@@ -1,45 +1,37 @@
 <script lang="ts">
-	import type { TableItems } from '$lib/interfaces';
+	import { createEventDispatcher } from 'svelte';
+	import { Table, Search } from 'flowbite-svelte';
 
-	import { Table, TableBody, TableHead, TableHeadCell, Search } from 'flowbite-svelte';
-	import Pagination from './Pagination.svelte';
-	import TableRow from './TableRow.svelte';
-	import TableTitle from './TableTitle.svelte';
+	export let title: string = 'Titulo';
+	export let searchTerm = '';
 
-	export let items: TableItems = [];
-	export let title: string;
+	const dispatch = createEventDispatcher();
 
-	let searchTerm = '';
+	function handleSubmit(e: SubmitEvent) {
+		e.preventDefault();
 
-	$: itemKeys = Object.keys(items[0]);
+		const data = searchTerm.trim().toLowerCase();
+		dispatch('search', data);
+	}
 </script>
 
+<!-- Title -->
 <div class="flex gap-x-7">
-	<TableTitle {title} />
-	<slot name="link" />
+	<h1 class="table-title">{title}</h1>
+	<slot name="stock" />
 </div>
 <hr class="hr" />
 
+<!-- Search and New Ingredient -->
 <div class="flex justify-between mb-4 p-4 bg-white">
-	<div class="max-w-lg">
-		<!-- TODO: Form and query then submit  -->
+	<form class="max-w-lg" on:submit={handleSubmit}>
 		<Search bind:value={searchTerm} placeholder="Buscar por nombre" />
-	</div>
+	</form>
 	<slot name="crear" />
 </div>
 
+<!-- Table -->
 <Table shadow={true} striped={true}>
-	<TableHead>
-		{#each itemKeys as key}
-			<TableHeadCell>{key}</TableHeadCell>
-		{/each}
-	</TableHead>
-	<TableBody>
-		{#each items as item}
-			<TableRow {item} />
-		{/each}
-	</TableBody>
+	<slot name="head" />
+	<slot name="body" />
 </Table>
-<div class="flex justify-end mt-4">
-	<Pagination />
-</div>

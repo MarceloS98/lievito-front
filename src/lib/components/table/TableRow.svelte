@@ -1,21 +1,14 @@
 <script lang="ts">
 	import { TableBodyCell, TableBodyRow } from 'flowbite-svelte';
-	import type { TableItem } from '$lib/interfaces';
 
-	import MenuIcon from './MenuIcon.svelte';
+	export let item: any;
 
-	export let item: TableItem;
-
-	function getProperty(item: any, property: any) {
-		return item[property];
-	}
+	const values = Object.values(item).splice(1);
 </script>
 
 <TableBodyRow>
-	{#each Object.keys(item) as propertyName}
-		<TableBodyCell>{getProperty(item, propertyName)}</TableBodyCell>
+	{#each values as value}
+		<TableBodyCell>{value}</TableBodyCell>
 	{/each}
-	<TableBodyCell>
-		<MenuIcon />
-	</TableBodyCell>
+	<slot name="actions" />
 </TableBodyRow>

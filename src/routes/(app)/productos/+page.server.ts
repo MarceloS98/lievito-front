@@ -1,16 +1,37 @@
 // import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import type { Ingredient, Product } from '$lib/interfaces';
+import type { Ingredient, Product, ProductIngredient } from '$lib/interfaces';
+import { redirect } from '@sveltejs/kit';
 
-export const load: PageServerLoad = async ({ fetch }) => {
+type ProductData = {
+	products: Product[];
+	totalPages: number;
+};
+
+type IngredientData = {
+	ingredients: Ingredient[];
+	totalPages: number;
+};
+
+export const load: PageServerLoad = async ({ fetch, url }) => {
+	const page = url.searchParams.get('page');
+
+	if (!page) {
+		throw redirect(302, '/productos?page=1');
+	}
+
 	try {
-		const res_productos = await fetch('/data/productos.json');
-		const res_ingredientes = await fetch('/data/ingredientes.json');
+		const [res_productos, res_ingredientes, res_productos_ingrediente] = await Promise.all([
+			fetch(`https://lievito-back-production.up.railway.app/api/v1/products?page=${page}`),
+			fetch('https://lievito-back-production.up.railway.app/api/v1/ingredients?all=true'),
+			fetch('https://lievito-back-production.up.railway.app/api/v1/productIngredients')
+		]);
 
-		const productos: Product[] = await res_productos.json();
-		const ingredientes: Ingredient[] = await res_ingredientes.json();
+		const productData: ProductData = await res_productos.json();
+		const { ingredients }: IngredientData = await res_ingredientes.json();
+		const productIngredients: ProductIngredient[] = await res_productos_ingrediente.json();
 
-		return { productos, ingredientes };
+		return { productData, ingredients, productIngredients };
 	} catch (e) {
 		console.log(e);
 	}

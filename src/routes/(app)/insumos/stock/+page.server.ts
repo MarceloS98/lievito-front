@@ -1,13 +1,27 @@
 import type { PageServerLoad } from './$types';
-import type { Ingredient } from '$lib/interfaces';
+import type { IngredientStock } from '$lib/interfaces';
+import { redirect } from '@sveltejs/kit';
 
-export const load: PageServerLoad = async ({ fetch }) => {
+type IngredientStockData = {
+	ingredientStock: IngredientStock[];
+	totalPages: number;
+};
+
+export const load: PageServerLoad = async ({ fetch, url }) => {
+	const page = url.searchParams.get('page');
+
+	if (!page) {
+		throw redirect(302, '/insumos/stock?page=1');
+	}
+
 	try {
-		const res_ingredientes = await fetch('/data/ingredientes-stock.json');
+		const res = await fetch(
+			`https://lievito-back-production.up.railway.app/api/v1/ingredientsStock?page=${page}`
+		);
 
-		const ingredientes: Ingredient[] = await res_ingredientes.json();
+		const ingredientStockData: IngredientStockData = await res.json();
 
-		return { ingredientes };
+		return { ingredientStockData };
 	} catch (e) {
 		console.log(e);
 	}
