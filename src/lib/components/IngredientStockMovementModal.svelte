@@ -83,6 +83,8 @@
 					<Label for="quantity" class="mb-2">Cantidad</Label>
 					<Input
 						type="number"
+						step="any"
+						min="0"
 						id="quantity"
 						placeholder="Cantidad en kg"
 						name="quantity"
@@ -138,6 +140,8 @@
 					<Input
 						type="number"
 						id="quantity"
+						step="any"
+						min="0"
 						name="quantity"
 						placeholder="Cantidad en kg"
 						required
@@ -166,7 +170,9 @@
 
 				<div class="flex items-end space-x-4 mt-3">
 					<Button type="submit" class="w-64">Registrar</Button>
-					<Button type="submit" class="w-52" outline color="red">Cancelar</Button>
+					<Button type="button" class="w-52" outline color="red" on:click={() => (isOpen = false)}
+						>Cancelar</Button
+					>
 				</div>
 			</div>
 		{/if}
