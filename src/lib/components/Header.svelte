@@ -25,10 +25,10 @@
 	</div>
 	<Dropdown placement="bottom" triggeredBy="#avatar-menu">
 		<DropdownHeader>
-			<span class="block text-sm">Bonnie Green</span>
-			<span class="block truncate text-sm font-medium">name@flowbite.com</span>
+			<span class="block text-sm">Admin</span>
+			<span class="block truncate text-sm font-medium">admin@lievito.com</span>
 		</DropdownHeader>
-		<DropdownItem>Sign out</DropdownItem>
+		<DropdownItem>Cerrar Sesión</DropdownItem>
 	</Dropdown>
 	<NavUl {hidden}>
 		<NavLi href="/" active={path === '/'}>Home</NavLi>
